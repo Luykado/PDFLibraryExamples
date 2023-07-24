@@ -25,7 +25,7 @@ namespace QuestPDFExample
                 var users = UserDataSource.GetUsers(i);
                 var usersDocument = new UsersDocument(users);
                 usersDocument.GenerateReportWithMetrix(Console.WriteLine, additionalText: $"{i} users");
-                usersDocument.GenerateReportAndShowWithMetrix(Console.WriteLine, additionalText: $"{i} users");
+                //usersDocument.GenerateReportAndShowWithMetrix(Console.WriteLine, additionalText: $"{i} users");
             }
 
             for (int i = initialCountUser; i <= finalCountUser; i *= stepCountUser)
@@ -33,7 +33,7 @@ namespace QuestPDFExample
                 var users = UserDataSource.GetUsers(i);
                 var usersNotesDocument = new UsersNotesDocument(users);
                 usersNotesDocument.GenerateReportWithMetrix(Console.WriteLine, additionalText: $"{i} users");
-                usersNotesDocument.GenerateReportAndShowWithMetrix(Console.WriteLine, additionalText: $"{i} users");
+                //usersNotesDocument.GenerateReportAndShowWithMetrix(Console.WriteLine, additionalText: $"{i} users");
             }
         }
     }
