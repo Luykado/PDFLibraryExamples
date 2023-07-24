@@ -8,7 +8,7 @@ namespace QuestPDFExample
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             // TODO: Please make sure that you are eligible to use the Community license.
             // To learn more about the QuestPDF licensing, please visit:
@@ -25,13 +25,15 @@ namespace QuestPDFExample
                 var users = UserDataSource.GetUsers(i);
                 var usersDocument = new UsersDocument(users);
                 usersDocument.GenerateReportWithMetrix(Console.WriteLine, additionalText: $"{i} users");
+                usersDocument.GenerateReportAndShowWithMetrix(Console.WriteLine, additionalText: $"{i} users");
             }
 
             for (int i = initialCountUser; i <= finalCountUser; i *= stepCountUser)
             {
                 var users = UserDataSource.GetUsers(i);
-                var usersDocument = new UsersNotesDocument(users);
-                usersDocument.GenerateReportWithMetrix(Console.WriteLine, additionalText: $"{i} users");
+                var usersNotesDocument = new UsersNotesDocument(users);
+                usersNotesDocument.GenerateReportWithMetrix(Console.WriteLine, additionalText: $"{i} users");
+                usersNotesDocument.GenerateReportAndShowWithMetrix(Console.WriteLine, additionalText: $"{i} users");
             }
         }
     }

@@ -12,6 +12,19 @@ namespace QuestPDFExample.Extensions
         {
             Stopwatch clock = new();
             clock.Start();
+            document.GeneratePdf();
+            var metadata = document.GetMetadata();
+            clock.Stop();
+
+            string defaultMessage = $"{metadata.Title} generation time: {clock.Elapsed}.";
+            string outputMessage = additionalText is null ? defaultMessage : $"{defaultMessage} {additionalText}";
+            outputDelegate?.Invoke(outputMessage); ;
+        }
+
+        public static void GenerateReportAndShowWithMetrix(this IDocument document, OutputDelegate outputDelegate, string additionalText = null)
+        {
+            Stopwatch clock = new();
+            clock.Start();
             document.GeneratePdfAndShow();
             var metadata = document.GetMetadata();
             clock.Stop();
