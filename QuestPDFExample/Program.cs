@@ -1,10 +1,8 @@
 ﻿using QuestPDF;
-using QuestPDF.Fluent;
 using QuestPDF.Infrastructure;
-using QuestPDF.Previewer;
 using QuestPDFExample.DataSources;
+using QuestPDFExample.Extensions;
 using QuestPDFExample.Models.Documents;
-using System.Diagnostics;
 
 namespace QuestPDFExample
 {
@@ -17,20 +15,24 @@ namespace QuestPDFExample
             // https://www.questpdf.com/pricing.html
             Settings.License = LicenseType.Community;
 
-            var users = UserDataSource.GetUsers();
-            var document = new UsersDocument(users);
+            //Metric Initialization
+            var initialCountUser = 400;
+            var finalCountUser = 40000;
+            var stepCountUser = 10;
 
-            Stopwatch clock = new Stopwatch();
-            clock.Start();
-            document.GeneratePdfAndShow();
-            clock.Stop();
+            for (int i = initialCountUser; i <= finalCountUser; i *= stepCountUser)
+            {
+                var users = UserDataSource.GetUsers(i);
+                var usersDocument = new UsersDocument(users);
+                usersDocument.GenerateReportWithMetrix(Console.WriteLine, additionalText: $"{i} users");
+            }
 
-            // Or open the QuestPDF Previewer and experiment with the document's design
-            // in real-time without recompilation after each code change
-            // https://www.questpdf.com/document-previewer.html
-            //document.ShowInPreviewer();
-
-            Console.WriteLine($"Time you spent for writting it: {clock.Elapsed}");
+            for (int i = initialCountUser; i <= finalCountUser; i *= stepCountUser)
+            {
+                var users = UserDataSource.GetUsers(i);
+                var usersDocument = new UsersNotesDocument(users);
+                usersDocument.GenerateReportWithMetrix(Console.WriteLine, additionalText: $"{i} users");
+            }
         }
     }
 }

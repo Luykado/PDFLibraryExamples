@@ -19,5 +19,7 @@ namespace QuestPDFExample.Models
         public Passport Passport { get; set; }
 
         public Address Address { get; set; }
+
+        public IEnumerable<Note> Notes { get; set; }
     }
 }

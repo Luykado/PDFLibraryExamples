@@ -8,9 +8,9 @@ namespace QuestPDFExample.DataSources
     {
         private static Random Random = new Random();
 
-        public static IEnumerable<User> GetUsers()
+        public static IEnumerable<User> GetUsers(int count)
         {
-            var users = Enumerable.Range(1, 400).Select(_ => GenerateRandomUser());
+            var users = Enumerable.Range(1, count).Select(_ => GenerateRandomUser());
 
             return users;
         }
@@ -26,6 +26,18 @@ namespace QuestPDFExample.DataSources
         {
             Array values = Enum.GetValues(typeof(T));
             return (T)values.GetValue(Random.Next(values.Length));
+        }
+
+        private static Note GenerateRandomNote()
+        {
+            DateTime startDate = new(2014, 1, 1);
+
+            return new Note
+            {
+                Content = Placeholders.Label(),
+                Description = Placeholders.Label(),
+                Date = GetRandomDate(startDate, DateTime.Now),
+            };
         }
 
         private static Address GenerateRandomAddress()
@@ -67,6 +79,7 @@ namespace QuestPDFExample.DataSources
                 Phone = Placeholders.PhoneNumber(),
                 Passport = GenerateRandomPassport(),
                 Address = GenerateRandomAddress(),
+                Notes = Enumerable.Range(1, 5).Select(_ => GenerateRandomNote()),
             };
         }
     }
