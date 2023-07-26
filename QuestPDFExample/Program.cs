@@ -16,24 +16,26 @@ namespace QuestPDFExample
             Settings.License = LicenseType.Community;
 
             //Metric Initialization
-            var initialCountUser = 400;
+            var initialCountUser = 4;
             var finalCountUser = 40000;
-            var stepCountUser = 10;
+            var step = 10;
 
-            for (int i = initialCountUser; i <= finalCountUser; i *= stepCountUser)
+            for (int i = initialCountUser; i <= finalCountUser; i *= step)
             {
                 var users = UserDataSource.GetUsers(i);
                 var usersDocument = new UsersDocument(users);
-                usersDocument.GenerateReportWithMetrix(Console.WriteLine, additionalText: $"{i} users");
-                //usersDocument.GenerateReportAndShowWithMetrix(Console.WriteLine, additionalText: $"{i} users");
+                var text = $"{i} users and pages {i / initialCountUser}";
+                usersDocument.GenerateReportWithMetrics(Console.WriteLine, additionalText: text);
+                //usersDocument.GenerateReportAndShowWithMetrix(Console.WriteLine, additionalText: text);
             }
 
-            for (int i = initialCountUser; i <= finalCountUser; i *= stepCountUser)
+            for (int i = initialCountUser; i <= finalCountUser; i *= step)
             {
                 var users = UserDataSource.GetUsers(i);
                 var usersNotesDocument = new UsersNotesDocument(users);
-                usersNotesDocument.GenerateReportWithMetrix(Console.WriteLine, additionalText: $"{i} users");
-                //usersNotesDocument.GenerateReportAndShowWithMetrix(Console.WriteLine, additionalText: $"{i} users");
+                var text = $"{i} users and pages {i / initialCountUser}";
+                usersNotesDocument.GenerateReportWithMetrics(Console.WriteLine, additionalText: text);
+                //usersNotesDocument.GenerateReportAndShowWithMetrix(Console.WriteLine, additionalText: text);
             }
         }
     }

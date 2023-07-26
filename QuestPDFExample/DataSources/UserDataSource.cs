@@ -79,7 +79,7 @@ namespace QuestPDFExample.DataSources
                 Phone = Placeholders.PhoneNumber(),
                 Passport = GenerateRandomPassport(),
                 Address = GenerateRandomAddress(),
-                Notes = Enumerable.Range(1, 5).Select(_ => GenerateRandomNote()),
+                Notes = Enumerable.Range(1, 4).Select(_ => GenerateRandomNote()),
             };
         }
     }

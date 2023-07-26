@@ -35,7 +35,7 @@ namespace QuestPDFExample.Models.Components
                 foreach (var user in Users)
                 {
                     table.Cell().Element(CellStyle).Text(user.FullName);
-                    table.Cell().Element(CellStyle).Component(new NoteTableComponent(user.Notes));
+                    table.Cell().Element(CellStyle).ShowEntire().Component(new NoteTableComponent(user.Notes));
 
                     static IContainer CellStyle(IContainer container) => container.BorderBottom(1).BorderColor(Colors.Grey.Lighten2).PaddingVertical(5);
                 }

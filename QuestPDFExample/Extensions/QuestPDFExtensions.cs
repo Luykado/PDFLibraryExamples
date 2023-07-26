@@ -8,7 +8,7 @@ namespace QuestPDFExample.Extensions
     {
         public delegate void OutputDelegate(string output);
 
-        public static void GenerateReportWithMetrix(this IDocument document, OutputDelegate outputDelegate, string additionalText = null)
+        public static void GenerateReportWithMetrics(this IDocument document, OutputDelegate outputDelegate, string additionalText = null)
         {
             Stopwatch clock = new();
             clock.Start();
@@ -21,7 +21,7 @@ namespace QuestPDFExample.Extensions
             outputDelegate?.Invoke(outputMessage); ;
         }
 
-        public static void GenerateReportAndShowWithMetrix(this IDocument document, OutputDelegate outputDelegate, string additionalText = null)
+        public static void GenerateReportAndShowWithMetrics(this IDocument document, OutputDelegate outputDelegate, string additionalText = null)
         {
             Stopwatch clock = new();
             clock.Start();
